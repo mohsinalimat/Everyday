@@ -58,7 +58,21 @@
             <objects>
                 <controller title="Everyday" id="P0Z-ph-khw" userLabel="MeetOptions" customClass="MeetOptionsInterfaceController" customModule="Meets_Extension">
                     <items>
-                        <group alignment="center" verticalAlignment="center" layout="vertical" spacing="10" id="yhx-96-it2">
+                        <group width="1" alignment="center" verticalAlignment="center" layout="vertical" spacing="20" id="xts-B8-Thw">
+                            <items>
+                                <label alignment="center" verticalAlignment="center" textAlignment="center" numberOfLines="2" id="Eya-8V-IG4" userLabel="Loading ...">
+                                    <string key="text">🚴🏻‍♂️
+Loading ...</string>
+                                    <color key="textColor" red="0.98431372549999996" green="0.98831266159999998" blue="0.98816364999999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </label>
+                                <button width="1" alignment="center" verticalAlignment="bottom" hidden="YES" title="Retry" id="29b-3P-zce">
+                                    <connections>
+                                        <action selector="actionGetMeets" destination="P0Z-ph-khw" id="Lee-mp-6Gt"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <group alignment="center" verticalAlignment="center" hidden="YES" layout="vertical" spacing="10" id="yhx-96-it2">
                             <items>
                                 <button alignment="center" verticalAlignment="center" accessibilityIdentifier="listButton" id="KyW-6X-uWQ">
                                     <group key="contentGroup" width="90" height="90" alignment="left" layout="vertical" radius="35" id="CJx-n2-505">
@@ -111,6 +125,12 @@
                             </items>
                         </group>
                     </items>
+                    <connections>
+                        <outlet property="btnTryAgain" destination="29b-3P-zce" id="GhA-2g-ynE"/>
+                        <outlet property="groupLoading" destination="xts-B8-Thw" id="We3-MC-KfT"/>
+                        <outlet property="groupOptions" destination="yhx-96-it2" id="Fpf-zf-ZGw"/>
+                        <outlet property="labelLoading" destination="Eya-8V-IG4" id="tLY-8J-jj0"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="-601" y="8.5"/>

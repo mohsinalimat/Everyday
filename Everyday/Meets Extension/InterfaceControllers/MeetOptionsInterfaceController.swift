@@ -9,7 +9,13 @@
 import WatchKit
 
 class MeetOptionsInterfaceController: WKInterfaceController {
-
+    
+    @IBOutlet private weak var labelLoading: WKInterfaceLabel!
+    @IBOutlet private weak var btnTryAgain: WKInterfaceButton!
+    
+    @IBOutlet private weak var groupOptions: WKInterfaceGroup!
+    @IBOutlet private weak var groupLoading: WKInterfaceGroup!
+    
     private var meets = [Meets]()
     private let currentCalendar = Calendar.current
     
@@ -29,20 +35,48 @@ class MeetOptionsInterfaceController: WKInterfaceController {
         }
     }
     
+    //MARK: Actions
+    @IBAction func actionGetMeets() {
+        actionGetMeetsAPICall()
+    }
+    
+    //MARK: Helpers
+    private func setupAPICallUI() {
+        groupOptions.setHidden(true)
+        groupLoading.setHidden(false)
+        btnTryAgain.setHidden(true)
+        labelLoading.setText(Constants.InterfaceController.APICalls.Loading)
+    }
+    
+    private func setupTryAgain() {
+        labelLoading.setText(Constants.InterfaceController.APICalls.TryAgain)
+        btnTryAgain.setHidden(false)
+    }
+    
+    private func setupSuccess() {
+        groupLoading.setHidden(true)
+        groupOptions.setHidden(false)
+    }
+    
+    //MARK: API Call
     private func actionGetMeetsAPICall() {
-        if let url = URL(string: "https://demo8026454.mockable.io/allmeets") {
+        setupAPICallUI()
+        if let url = URL(string: Constants.Request.EndPoint) {
             let config = URLSessionConfiguration.default
             config.requestCachePolicy = .reloadIgnoringLocalCacheData
             let session = URLSession.init(configuration: config)
             let task = session.dataTask(with: url) { [weak self] (data, response, error) in
                 if let error = error {
+                    self?.setupTryAgain()
                     print("API Error: ", error.localizedDescription)
                 } else {
                     do {
                         let jsonArray = try JSONSerialization.jsonObject(with: data!, options:.allowFragments) as! [[String : Any]]
-                        let meetsArray = jsonArray.map {Meets.init(dictionary: $0)}
+                        let meetsArray = jsonArray.map { Meets(dictionary: $0) }
                         self?.meets.append(contentsOf: meetsArray)
+                        self?.setupSuccess()
                     } catch let error {
+                        self?.setupTryAgain()
                         print("JSON Parsing Error: ", error.localizedDescription)
                     }
                 }

@@ -16,12 +16,21 @@ struct Constants {
                 static let Tomorrow = "MeetListTomorrowIdentifier"
             }
         }
+        
+        struct APICalls {
+            static let Loading = "🚴🏻‍♂️\nLoading ..."
+            static let TryAgain = "🌵Aah! Please try again."
+        }
     }
     
     struct TableRow {
         struct Identifiers {
             static let MeetList = "MeetsRowControllerIdentifier"
         }
+    }
+    
+    struct Request {
+        static let EndPoint = "https://demo8026454.mockable.io/allmeets"
     }
     
     struct ResponseKeys {
