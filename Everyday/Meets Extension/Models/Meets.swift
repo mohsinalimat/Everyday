@@ -10,31 +10,43 @@ import UIKit
 
 class Meets {
     
+    ///Meeting Title.
     var title: String?
+    ///Meeting Details.
     var details: String?
+    ///Meeting Start Time.
     var startTime: Date?
+    ///Meeting End Time.
     var endTime: Date?
+    ///Helpful to display different action buttons in Meeting Details Interface Controller.
     var actionType: MeetActionType = .other
-    var onDay: MeetOnDay = .other
-    var meetHours: MeetHours = .fixed
+    ///Helpful to check to whether date is yesterday/today/tomorrow or other.
+    private(set) var onDay: MeetOnDay = .other
+    ///Helpful to check the meeting duration.
+    private(set) var meetHours: MeetHours = .fixed
+    ///Helpful to check whether a meeting is read or not. Default: false
+    private(set) var isRead: Bool = false
+    ///Helpful to set meeting information in Meet Interface Controller.
+    private(set) var partialInfo: NSMutableAttributedString?
+    ///Helpful to set meeting information in Meet Details Interface Controller.
+    private(set) var fullInfo: NSMutableAttributedString?
     
+    ///Various Action Types, like: Call or Direction. Default: .other
     enum MeetActionType {
         case call, direction, other
     }
     
+    ///Various Day Types, like: Yesterday/Today/Tomorrow. Default: .other
     enum MeetOnDay {
         case yesterday, today, tomorrow, other
     }
     
+    ///Various Meeting Hours, like: Fixed/Fullday. Default: .fixed
     enum MeetHours {
         case fixed, fullday
     }
     
-    private(set) var isRead: Bool = false
-    
-    private(set) var partialInfo: NSMutableAttributedString?
-    private(set) var fullInfo: NSMutableAttributedString?
-    
+    ///Important to call after you set all the properties of a Meeting.
     func create() {
         
         //reset
@@ -110,11 +122,16 @@ class Meets {
                 let detailAttributed = NSAttributedString.init(string: "\n\n" + details, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0)])
                 fullInfo?.append(detailAttributed)
             }
-            
         }
     }
     
+    ///Helper to set a meeting as Read.
     func read() {
         isRead = true
+    }
+    
+    ///Helper to set a meeting as Unread.
+    func unread() {
+        isRead = false
     }
 }

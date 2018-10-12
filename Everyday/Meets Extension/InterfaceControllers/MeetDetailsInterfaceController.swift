@@ -32,14 +32,6 @@ class MeetDetailsInterfaceController: WKInterfaceController {
         }
     }
 
-    override func willActivate() {
-        super.willActivate()
-    }
-
-    override func didDeactivate() {
-        super.didDeactivate()
-    }
-    
     @IBAction func actionLongPress() {
         popToRootController()
     }

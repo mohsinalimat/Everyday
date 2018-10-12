@@ -17,14 +17,6 @@ class MeetOptionsInterfaceController: WKInterfaceController {
         super.awake(withContext: context)
         setupMeets()
     }
-
-    override func willActivate() {
-        super.willActivate()
-    }
-
-    override func didDeactivate() {
-        super.didDeactivate()
-    }
     
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
         if segueIdentifier == "MeetListTodayIdentifier" {
