@@ -67,16 +67,16 @@ class Meets {
                 var dateAttributed: NSAttributedString?
                 if startTime.isToday() {
                     onDay = .today
-                    dateAttributed = NSAttributedString.init(string: "Today", attributes: dateAttributes)
+                    dateAttributed = NSAttributedString.init(string: Constants.Meet.Titles.OnDay.Today, attributes: dateAttributes)
                 } else if startTime.isYesterday() {
                     onDay = .yesterday
-                    dateAttributed = NSAttributedString.init(string: "Yesterday", attributes: dateAttributes)
+                    dateAttributed = NSAttributedString.init(string: Constants.Meet.Titles.OnDay.Yesterday, attributes: dateAttributes)
                 } else if startTime.isTomorrow() {
                     onDay = .tomorrow
-                    dateAttributed = NSAttributedString.init(string: "Tomorrow", attributes: dateAttributes)
+                    dateAttributed = NSAttributedString.init(string: Constants.Meet.Titles.OnDay.Tomorrow, attributes: dateAttributes)
                 } else {
                     onDay = .other
-                    df.dateFormat = "MMM dd, yyyy"
+                    df.dateFormat = Constants.Meet.DateTime.dateFormat
                     let date = df.string(from: startTime)
                     dateAttributed = NSAttributedString.init(string: date, attributes: dateAttributes)
                 }
@@ -87,7 +87,7 @@ class Meets {
                 }
 
                 //Start Time
-                df.dateFormat = "hh:mm a"
+                df.dateFormat = Constants.Meet.DateTime.timeFormat
                 let from = df.string(from: startTime)
                 let fromAttributed = NSAttributedString.init(string: "\n" + from, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 10.0)])
                 partialInfo?.append(fromAttributed)
@@ -102,7 +102,7 @@ class Meets {
                     let diff = endTime.hours(from: startTime)
                     if diff >= 8 {
                         meetHours = .fullday
-                        let toAttributed = NSAttributedString.init(string: " - Fullday", attributes: toAttributes)
+                        let toAttributed = NSAttributedString.init(string: " - " + Constants.Meet.Titles.Fullday, attributes: toAttributes)
                         partialInfo?.append(toAttributed)
                         fullInfo?.append(toAttributed)
                     } else {

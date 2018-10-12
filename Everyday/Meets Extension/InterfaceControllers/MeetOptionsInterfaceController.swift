@@ -13,15 +13,16 @@ class MeetOptionsInterfaceController: WKInterfaceController {
     private var meets = [Meets]()
     private let currentCalendar = Calendar.current
     
+    //MARK: View Life Cycle
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         setupMeets()
     }
     
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
-        if segueIdentifier == "MeetListTodayIdentifier" {
+        if segueIdentifier == Constants.InterfaceController.Identifiers.MeetList.Today {
             return meets.filter {$0.onDay == .today}
-        } else if segueIdentifier == "MeetListTomorrowIdentifier" {
+        } else if segueIdentifier == Constants.InterfaceController.Identifiers.MeetList.Tomorrow {
             return meets.filter {$0.onDay == .tomorrow}
         } else {
             return meets

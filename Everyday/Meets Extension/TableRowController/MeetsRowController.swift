@@ -32,7 +32,7 @@ class MeetsRowController: NSObject {
     }
     
     func configNoSchedules() {
-        labelInfo.setAttributedText(NSAttributedString.init(string: "You're a free bird!🏄🏽‍♂️\nNo meetings scheduled.", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0), NSAttributedString.Key.foregroundColor: UIColor.white]))
+        labelInfo.setAttributedText(NSAttributedString.init(string: Constants.Meet.Titles.NoScheduleForList, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0), NSAttributedString.Key.foregroundColor: UIColor.white]))
         hideLeftEdge()
         hideUnreadCircle()
     }

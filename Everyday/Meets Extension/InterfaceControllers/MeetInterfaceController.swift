@@ -10,18 +10,19 @@ import WatchKit
 
 class MeetListInterfaceController: WKInterfaceController {
 
-    @IBOutlet weak var tableRowController: WKInterfaceTable!
+    @IBOutlet private weak var tableRowController: WKInterfaceTable!
     
     private var meets = [Meets]()
     private var colors = [UIColor.cyan, UIColor.purple, UIColor.yellow, UIColor.red.withAlphaComponent(0.5), UIColor.orange, UIColor.blue, UIColor.green, UIColor.magenta]
 
+    //MARK: View Life Cycle
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
 
         if let requestedMeets = context as? [Meets], !requestedMeets.isEmpty {
             setTitle("List [\(requestedMeets.count)]")
             meets.append(contentsOf: requestedMeets)
-            tableRowController.setNumberOfRows(meets.count, withRowType: "MeetsRowControllerIdentifier")
+            tableRowController.setNumberOfRows(meets.count, withRowType: Constants.TableRow.Identifiers.MeetList)
             for (index, meet) in meets.enumerated() {
                 if let row = tableRowController.rowController(at: index) as? MeetsRowController {
                     let color = colors.randomElement() ?? UIColor.black.withAlphaComponent(0.5)
@@ -32,7 +33,7 @@ class MeetListInterfaceController: WKInterfaceController {
             }
         } else {
             setTitle("")
-            tableRowController.setNumberOfRows(1, withRowType: "MeetsRowControllerIdentifier")
+            tableRowController.setNumberOfRows(1, withRowType: Constants.TableRow.Identifiers.MeetList)
             let row = tableRowController.rowController(at: 0) as? MeetsRowController
             row?.configNoSchedules()
         }
