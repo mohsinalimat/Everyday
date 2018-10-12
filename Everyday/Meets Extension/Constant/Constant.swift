@@ -24,6 +24,20 @@ struct Constants {
         }
     }
     
+    struct ResponseKeys {
+        struct Meet {
+            static let Title = "title"
+            static let Details = "details"
+            static let StartTime = "startTime"
+            static let EndTime = "endTime"
+            static let Action = "action"
+        }
+        struct MeetActions {
+            static let Call = "call"
+            static let Direction = "direction"
+        }
+    }
+    
     struct Meet {
         struct Titles {
             static let NoScheduleForList = "You're a free bird!🏄🏽‍♂️\nNo meetings scheduled."

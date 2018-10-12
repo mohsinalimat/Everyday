@@ -46,8 +46,35 @@ class Meets {
         case fixed, fullday
     }
     
-    ///Important to call after you set all the properties of a Meeting.
-    func create() {
+    init(dictionary: [String: Any?]) {
+        title = dictionary[Constants.ResponseKeys.Meet.Title] as? String
+        details = dictionary[Constants.ResponseKeys.Meet.Details] as? String
+        actionType = getActionType(from: dictionary[Constants.ResponseKeys.Meet.Action] as? String)
+        
+        if let startTime = dictionary[Constants.ResponseKeys.Meet.StartTime] as? String {
+            self.startTime = getDate(fromDate: startTime)
+        }
+        if let endTime = dictionary[Constants.ResponseKeys.Meet.EndTime] as? String {
+            self.endTime = getDate(fromDate: endTime)
+        }
+        
+        create()
+    }
+    
+    private func getDate(fromDate: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+        return dateFormatter.date(from: fromDate)
+    }
+    
+    private func getActionType(from: String?) -> MeetActionType {
+        guard let from = from else { return .other }
+        if from == "call" { return .call }
+        if from == "direction" { return .direction }
+        else { return .other }
+    }
+    
+    private func create() {
         
         //reset
         partialInfo = NSMutableAttributedString()
