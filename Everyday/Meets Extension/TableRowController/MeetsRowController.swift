@@ -14,7 +14,7 @@ class MeetsRowController: NSObject {
     @IBOutlet private var groupColoredLeftEdge: WKInterfaceGroup!
     @IBOutlet private var groupUnreadCircle: WKInterfaceGroup!
     
-    var meet: Meets! {
+    var meet: Meeting! {
         didSet {
             labelInfo.setAttributedText(meet.partialInfo)
         }

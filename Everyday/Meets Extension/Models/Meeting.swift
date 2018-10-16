@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Meets {
+class Meeting {
     
     ///Meeting Title.
     var title: String?

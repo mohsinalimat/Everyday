@@ -12,14 +12,14 @@ class MeetListInterfaceController: WKInterfaceController {
 
     @IBOutlet private weak var tableRowController: WKInterfaceTable!
     
-    private var meets = [Meets]()
+    private var meets = [Meeting]()
     private var colors = [UIColor.cyan, UIColor.purple, UIColor.yellow, UIColor.red.withAlphaComponent(0.5), UIColor.orange, UIColor.blue, UIColor.green, UIColor.magenta]
 
     //MARK: View Life Cycle
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
 
-        if let requestedMeets = context as? [Meets], !requestedMeets.isEmpty {
+        if let requestedMeets = context as? [Meeting], !requestedMeets.isEmpty {
             setTitle("List [\(requestedMeets.count)]")
             meets.append(contentsOf: requestedMeets)
             tableRowController.setNumberOfRows(meets.count, withRowType: Constants.TableRow.Identifiers.MeetList)

@@ -16,7 +16,7 @@ class MeetOptionsInterfaceController: WKInterfaceController {
     @IBOutlet private weak var groupOptions: WKInterfaceGroup!
     @IBOutlet private weak var groupLoading: WKInterfaceGroup!
     
-    private var meetings = [Meets]()
+    private var meetings = [Meeting]()
     private let currentCalendar = Calendar.current
     
     //MARK: View Life Cycle
@@ -67,7 +67,7 @@ class MeetOptionsInterfaceController: WKInterfaceController {
             if let allMeetings = message["meetings"] as? [[String: String]] {
                 self?.setupSuccess()
                 self?.meetings.removeAll()
-                self?.meetings.append(contentsOf: allMeetings.map { Meets.init(dictionary: $0) })
+                self?.meetings.append(contentsOf: allMeetings.map { Meeting.init(dictionary: $0) })
             }
         }
     }

@@ -22,7 +22,7 @@
 		6BAF6BC2216F2AE400D3EBD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BAF6BC1216F2AE400D3EBD5 /* Assets.xcassets */; };
 		6BAF6BC6216F2AE400D3EBD5 /* Meets.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6BAF6BAC216F2AE200D3EBD5 /* Meets.app */; };
 		6BAF6BD0216F2FA500D3EBD5 /* MeetsRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF6BCF216F2FA500D3EBD5 /* MeetsRowController.swift */; };
-		6BAF6BD2216F374100D3EBD5 /* Meets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF6BD1216F374100D3EBD5 /* Meets.swift */; };
+		6BAF6BD2216F374100D3EBD5 /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF6BD1216F374100D3EBD5 /* Meeting.swift */; };
 		6BAF6BD4216F663D00D3EBD5 /* MeetDetailsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF6BD3216F663D00D3EBD5 /* MeetDetailsInterfaceController.swift */; };
 		6BAF6BD6216F665F00D3EBD5 /* MeetInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF6BD5216F665F00D3EBD5 /* MeetInterfaceController.swift */; };
 		6BAF6BDD216F7C1700D3EBD5 /* MeetOptionsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF6BDC216F7C1700D3EBD5 /* MeetOptionsInterfaceController.swift */; };
@@ -93,7 +93,7 @@
 		6BAF6BC1216F2AE400D3EBD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6BAF6BC3216F2AE400D3EBD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6BAF6BCF216F2FA500D3EBD5 /* MeetsRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetsRowController.swift; sourceTree = "<group>"; };
-		6BAF6BD1216F374100D3EBD5 /* Meets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meets.swift; sourceTree = "<group>"; };
+		6BAF6BD1216F374100D3EBD5 /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
 		6BAF6BD3216F663D00D3EBD5 /* MeetDetailsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetDetailsInterfaceController.swift; sourceTree = "<group>"; };
 		6BAF6BD5216F665F00D3EBD5 /* MeetInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetInterfaceController.swift; sourceTree = "<group>"; };
 		6BAF6BDC216F7C1700D3EBD5 /* MeetOptionsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetOptionsInterfaceController.swift; sourceTree = "<group>"; };
@@ -144,15 +144,15 @@
 		6BAF6B97216F2A0C00D3EBD5 /* Everyday */ = {
 			isa = PBXGroup;
 			children = (
+				6BD86002217616B200290739 /* ViewControllers */,
+				6BD86001217616A600290739 /* CoreDataModel */,
+				6BD860002176169D00290739 /* Constant */,
+				6BD85FFF2176169300290739 /* WatchSessionManager */,
 				6BAF6B98216F2A0C00D3EBD5 /* AppDelegate.swift */,
-				6BAF6B9A216F2A0C00D3EBD5 /* ViewController.swift */,
 				6BAF6B9C216F2A0C00D3EBD5 /* Main.storyboard */,
 				6BAF6B9F216F2A0E00D3EBD5 /* Assets.xcassets */,
 				6BAF6BA1216F2A0E00D3EBD5 /* LaunchScreen.storyboard */,
 				6BAF6BA4216F2A0E00D3EBD5 /* Info.plist */,
-				6B6988182175E08800E7FF91 /* Everyday.xcdatamodeld */,
-				6B69881D2175E1DB00E7FF91 /* Constants.swift */,
-				6BD85FFA2175F21500290739 /* WatchSessionManager.swift */,
 			);
 			path = Everyday;
 			sourceTree = "<group>";
@@ -170,7 +170,7 @@
 		6BAF6BBC216F2AE300D3EBD5 /* Meets Extension */ = {
 			isa = PBXGroup;
 			children = (
-				6BD85FFC2175F3F700290739 /* WatchSessionManager.swift */,
+				6BD85FFE2176167000290739 /* WatchSessionManager */,
 				6BAF6BD8216F70DE00D3EBD5 /* ExtensionDelegate */,
 				6BAF6BE2216F973B00D3EBD5 /* Extensions */,
 				6BAF6BE3217028BA00D3EBD5 /* Constant */,
@@ -212,7 +212,7 @@
 		6BAF6BDA216F70FB00D3EBD5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6BAF6BD1216F374100D3EBD5 /* Meets.swift */,
+				6BAF6BD1216F374100D3EBD5 /* Meeting.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -231,6 +231,46 @@
 				6BAF6BE4217028DA00D3EBD5 /* Constant.swift */,
 			);
 			path = Constant;
+			sourceTree = "<group>";
+		};
+		6BD85FFE2176167000290739 /* WatchSessionManager */ = {
+			isa = PBXGroup;
+			children = (
+				6BD85FFC2175F3F700290739 /* WatchSessionManager.swift */,
+			);
+			path = WatchSessionManager;
+			sourceTree = "<group>";
+		};
+		6BD85FFF2176169300290739 /* WatchSessionManager */ = {
+			isa = PBXGroup;
+			children = (
+				6BD85FFA2175F21500290739 /* WatchSessionManager.swift */,
+			);
+			path = WatchSessionManager;
+			sourceTree = "<group>";
+		};
+		6BD860002176169D00290739 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				6B69881D2175E1DB00E7FF91 /* Constants.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		6BD86001217616A600290739 /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				6B6988182175E08800E7FF91 /* Everyday.xcdatamodeld */,
+			);
+			path = CoreDataModel;
+			sourceTree = "<group>";
+		};
+		6BD86002217616B200290739 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				6BAF6B9A216F2A0C00D3EBD5 /* ViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,7 +420,7 @@
 			files = (
 				6BAF6BD6216F665F00D3EBD5 /* MeetInterfaceController.swift in Sources */,
 				6BAF6BD4216F663D00D3EBD5 /* MeetDetailsInterfaceController.swift in Sources */,
-				6BAF6BD2216F374100D3EBD5 /* Meets.swift in Sources */,
+				6BAF6BD2216F374100D3EBD5 /* Meeting.swift in Sources */,
 				6BAF6BE5217028DA00D3EBD5 /* Constant.swift in Sources */,
 				6BAF6BD0216F2FA500D3EBD5 /* MeetsRowController.swift in Sources */,
 				6B6988202175E5B900E7FF91 /* Date+Extension.swift in Sources */,

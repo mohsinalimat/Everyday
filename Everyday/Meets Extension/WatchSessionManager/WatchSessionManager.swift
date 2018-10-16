@@ -36,8 +36,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
 
 // MARK: Application Context
 extension WatchSessionManager {
-    
-    // Sender
+
     func updateApplicationContext(applicationContext: [String : Any]) throws {
         do {
             try session.updateApplicationContext(applicationContext)
@@ -53,8 +52,7 @@ extension WatchSessionManager {
             self?.onSessionRequest?(false, error)
         }
     }
-    
-    // Receiver    
+
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
         onReceivingApplicationContext?(applicationContext)
     }

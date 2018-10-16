@@ -17,7 +17,7 @@ class MeetDetailsInterfaceController: WKInterfaceController {
     //MARK: View Life Cycle
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        if let meet = context as? Meets {
+        if let meet = context as? Meeting {
             meet.read()
             labelDetails.setAttributedText(meet.fullInfo)
             if meet.actionType == .call {
