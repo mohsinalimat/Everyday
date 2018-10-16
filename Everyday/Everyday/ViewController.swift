@@ -15,8 +15,57 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.handleWatchSessionManagerCallbacks()
         self.actionFetchTodoListAPI()
-        self.sendToWatchApp()
+    }
+    
+    fileprivate func handleWatchSessionManagerCallbacks() {
+        WatchSessionManager.sharedManager.onSessionRechableStateChange = { rechable in
+            if rechable {
+                print("iOS app is connected with the WatchOS app.")
+            } else {
+                print("iOS app is not connected with the WatchOS app.")
+            }
+        }
+        
+        WatchSessionManager.sharedManager.onSessionStateChange = { [weak self] sessionState, error in
+            switch sessionState {
+            case .activated:
+                print("iOS app session activated.")
+                self?.sendToWatchApp()
+            case .notActivated:
+                print("iOS app session notActivated.")
+            case .inactive:
+                print("iOS app session is inactive.")
+            case .deactivate:
+                print("iOS app session is deactivated.")
+            }
+            if let error = error {
+                print("iOS app session change error: \(error.localizedDescription)")
+            }
+        }
+        
+        WatchSessionManager.sharedManager.onSessionRequest = { success, error in
+            if success {
+                print("iOS app sent request to the WatchOS app.")
+            } else {
+                if let error = error {
+                    print("iOS app couldn't send request to the WatchOS app. Error: \(error.localizedDescription)")
+                } else {
+                    print("iOS app couldn't send request to the WatchOS app.")
+                }
+            }
+        }
+        
+        WatchSessionManager.sharedManager.onReceivingMessage = { [weak self] applicationContext in
+            DispatchQueue.main.async {
+                if let fetch = applicationContext["fetch"] as? Bool, fetch {
+                    self?.sendToWatchApp()
+                } else {
+                    print("iOS app Data Received: Handle other requests.\n\(applicationContext)")
+                }
+            }
+        }
     }
     
     fileprivate func sendToWatchApp() {
@@ -24,11 +73,7 @@ class ViewController: UIViewController {
             guard let meetings = meetings else { return }
             if let allMeetings = self?.convertToDictionaryArray(from: meetings) {
                 print("All meetings count: ", allMeetings.count)
-                do {
-                    try WatchSessionManager.sharedManager.updateApplicationContext(applicationContext: ["meetings": allMeetings])
-                } catch let error {
-                    print("Error sending data to watch app: \(error.localizedDescription)")
-                }
+                WatchSessionManager.sharedManager.send(message: ["meetings": allMeetings])
             }
         }
     }

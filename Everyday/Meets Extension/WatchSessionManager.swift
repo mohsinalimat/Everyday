@@ -9,8 +9,19 @@
 import UIKit
 import WatchConnectivity
 
+enum SessionState {
+    case activated, notActivated, inactive, deactivate
+}
+
 class WatchSessionManager: NSObject, WCSessionDelegate {
     static let sharedManager = WatchSessionManager()
+    
+    var onSessionStateChange: ((_ state: SessionState, _ error: Error?) -> Void)?
+    var onSessionRechableStateChange: ((_ isReachable: Bool) -> Void)?
+    var onSessionRequest:((_ success: Bool, _ error: Error?) -> Void)?
+    var onReceivingMessage:((_ message: [String : Any]) -> Void)?
+    var onReceivingApplicationContext:((_ applicationContext: [String : Any]) -> Void)?
+    
     private override init() {
         super.init()
     }
@@ -28,32 +39,49 @@ extension WatchSessionManager {
     
     // Sender
     func updateApplicationContext(applicationContext: [String : Any]) throws {
-        print("Everyday WatchOS app: updateApplicationContext:")
         do {
             try session.updateApplicationContext(applicationContext)
+            onSessionRequest?(true, nil)
         } catch let error {
+            onSessionRequest?(false, error)
             throw error
+        }
+    }
+    
+    func send(message: [String: Any]) {
+        session.sendMessage(message, replyHandler: nil) { [weak self] (error) in
+            self?.onSessionRequest?(false, error)
         }
     }
     
     // Receiver    
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
-        print("Everyday WatchOS app: didReceiveApplicationContext: applicationContext:")
-        // handle receiving application context
-        DispatchQueue.main.async {
-            // make sure to put on the main queue to update UI!
-        }
+        onReceivingApplicationContext?(applicationContext)
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        onReceivingMessage?(message)
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        print("Everyday WatchOS app: activationDidCompleteWith: activationState: error")
+        if activationState == .activated {
+            onSessionStateChange?(.activated, error)
+        } else if activationState == .inactive {
+            onSessionStateChange?(.inactive, error)
+        } else if activationState == .notActivated {
+            onSessionStateChange?(.notActivated, error)
+        }
+    }
+    
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        onSessionRechableStateChange?(session.isReachable)
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {
-        print("Everyday WatchOS app: sessionDidBecomeInactive")
+        onSessionStateChange?(.inactive, nil)
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
-        print("Everyday WatchOS app: sessionDidDeactivate")
+        onSessionStateChange?(.deactivate, nil)
     }
 }

@@ -22,14 +22,49 @@ class MeetOptionsInterfaceController: WKInterfaceController {
     //MARK: View Life Cycle
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
+        self.handleWatchSessionManagerCallbacks()
     }
     
-    override func willActivate() {
-        super.willActivate()
-        do {
-            try WatchSessionManager.sharedManager.updateApplicationContext(applicationContext: ["fetch": true])
-        } catch let error {
-            print("Error sending new data request: \(error.localizedDescription)")
+    fileprivate func handleWatchSessionManagerCallbacks() {
+        WatchSessionManager.sharedManager.onSessionRechableStateChange = { rechable in
+            if rechable {
+                print("WatchOS app is connected with the iOS app.")
+            } else {
+                print("WatchOS app is not connected with the iOS app.")
+            }
+        }
+        
+        WatchSessionManager.sharedManager.onSessionStateChange = { [weak self] sessionState, error in
+            switch sessionState {
+            case .activated:
+                print("WatchOS app session activated.")
+                self?.actionGetMeets()
+            case .notActivated:
+                print("WatchOS app session notActivated.")
+            case .inactive:
+                print("WatchOS app session is inactive.")
+            case .deactivate:
+                print("WatchOS app session is deactivated.")
+            }
+            if let error = error {
+                print("WatchOS app session change error: \(error.localizedDescription)")
+            }
+        }
+        
+        WatchSessionManager.sharedManager.onSessionRequest = { success, error in
+            if success {
+                print("WatchOS app sent request to the iOS app.")
+            } else {
+                if let error = error {
+                    print("WatchOS app couldn't send request to the iOS app. Error: \(error.localizedDescription)")
+                } else {
+                    print("WatchOS app couldn't send request to the iOS app.")
+                }
+            }
+        }
+        
+        WatchSessionManager.sharedManager.onReceivingMessage = { applicationContext in
+            print("WatchOS Data Received:\n\(applicationContext)")
         }
     }
     
@@ -45,7 +80,7 @@ class MeetOptionsInterfaceController: WKInterfaceController {
     
     //MARK: Actions
     @IBAction func actionGetMeets() {
-        
+        WatchSessionManager.sharedManager.send(message: ["fetch": true])
     }
     
     //MARK: Helpers
