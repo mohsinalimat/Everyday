@@ -16,7 +16,7 @@ class MeetOptionsInterfaceController: WKInterfaceController {
     @IBOutlet private weak var groupOptions: WKInterfaceGroup!
     @IBOutlet private weak var groupLoading: WKInterfaceGroup!
     
-    private var meets = [Meets]()
+    private var meetings = [Meets]()
     private let currentCalendar = Calendar.current
     
     //MARK: View Life Cycle
@@ -63,18 +63,22 @@ class MeetOptionsInterfaceController: WKInterfaceController {
             }
         }
         
-        WatchSessionManager.sharedManager.onReceivingMessage = { applicationContext in
-            print("WatchOS Data Received:\n\(applicationContext)")
+        WatchSessionManager.sharedManager.onReceivingMessage = { [weak self] message in
+            if let allMeetings = message["meetings"] as? [[String: String]] {
+                self?.setupSuccess()
+                self?.meetings.removeAll()
+                self?.meetings.append(contentsOf: allMeetings.map { Meets.init(dictionary: $0) })
+            }
         }
     }
     
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
         if segueIdentifier == Constants.InterfaceController.Identifiers.MeetList.Today {
-            return meets.filter {$0.onDay == .today}
+            return meetings.filter {$0.onDay == .today}
         } else if segueIdentifier == Constants.InterfaceController.Identifiers.MeetList.Tomorrow {
-            return meets.filter {$0.onDay == .tomorrow}
+            return meetings.filter {$0.onDay == .tomorrow}
         } else {
-            return meets
+            return meetings
         }
     }
     

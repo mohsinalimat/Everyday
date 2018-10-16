@@ -25,8 +25,9 @@ class MeetListInterfaceController: WKInterfaceController {
             tableRowController.setNumberOfRows(meets.count, withRowType: Constants.TableRow.Identifiers.MeetList)
             for (index, meet) in meets.enumerated() {
                 if let row = tableRowController.rowController(at: index) as? MeetsRowController {
-                    let color = colors.randomElement() ?? UIColor.black.withAlphaComponent(0.5)
-                    row.config(leftEdgeColor: color, unreadCircleColor: color)
+                    //Uncomment and this will show random color for the left edge.
+                    //let color = colors.randomElement() ?? UIColor.black.withAlphaComponent(0.5)
+                    //row.config(leftEdgeColor: color, unreadCircleColor: color)
                     row.meet = meet
                     row.isRead = meet.isRead
                 }
