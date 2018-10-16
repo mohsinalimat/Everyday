@@ -11,14 +11,16 @@ import CoreData
 
 class ViewController: UIViewController {
     
-    let apd = UIApplication.shared.delegate as! AppDelegate
+    fileprivate let apd = UIApplication.shared.delegate as! AppDelegate
     
+    //MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.handleWatchSessionManagerCallbacks()
         self.actionFetchTodoListAPI()
     }
     
+    //MARK:- Handler WatchSessionManager Callbacks
     fileprivate func handleWatchSessionManagerCallbacks() {
         WatchSessionManager.sharedManager.onSessionRechableStateChange = { rechable in
             if rechable {
@@ -68,8 +70,9 @@ class ViewController: UIViewController {
         }
     }
     
+    //MARK:- Send To Watch
     fileprivate func sendToWatchApp() {
-        self.fetchMeeting { [weak self] (meetings) in
+        self.fetchMeetings { [weak self] (meetings) in
             guard let meetings = meetings else { return }
             if let allMeetings = self?.convertToDictionaryArray(from: meetings) {
                 print("All meetings count: ", allMeetings.count)
@@ -92,6 +95,7 @@ class ViewController: UIViewController {
         return result
     }
     
+    //MARK:- Manage Meetings
     fileprivate func deleteExistingMeetings(completion: @escaping(_ returned: Bool) ->()) {
         let fetchMeetingsRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Meeting")
         fetchMeetingsRequest.includesPropertyValues = false
@@ -108,7 +112,7 @@ class ViewController: UIViewController {
         }
     }
     
-    fileprivate func fetchMeeting(completion: (([Meeting]?)->Void)) {
+    fileprivate func fetchMeetings(completion: (([Meeting]?)->Void)) {
         let fetchMeetingsRequest = NSFetchRequest<NSFetchRequestResult>.init(entityName: "Meeting")
         fetchMeetingsRequest.sortDescriptors = [NSSortDescriptor.init(key: "startTime", ascending: true)]
         fetchMeetingsRequest.returnsObjectsAsFaults = false
@@ -127,6 +131,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //MARK:- Save to Core Data
     fileprivate func saveMeeting(dictionary: [String: String]) {
         let context = apd.persistentContainer.viewContext
         if let meetingEntity = NSEntityDescription.entity(forEntityName: "Meeting", in: context) {
@@ -144,6 +149,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //MARK:- API Request
     fileprivate func actionFetchTodoListAPI() {
         if let url = URL(string: Constants.Request.EndPoint) {
             let config = URLSessionConfiguration.default

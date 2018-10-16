@@ -47,7 +47,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
     }
 }
 
-// MARK: Application Context
+// MARK:- Application Context
 extension WatchSessionManager {
     func updateApplicationContext(applicationContext: [String : Any]) throws {
         if let session = validSession {

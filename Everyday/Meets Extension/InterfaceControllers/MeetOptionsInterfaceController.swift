@@ -19,12 +19,13 @@ class MeetOptionsInterfaceController: WKInterfaceController {
     private var meetings = [Meeting]()
     private let currentCalendar = Calendar.current
     
-    //MARK: View Life Cycle
+    //MARK:- View Life Cycle
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         self.handleWatchSessionManagerCallbacks()
     }
     
+    //MARK:- Handle WatchSessionManager Callbacks
     fileprivate func handleWatchSessionManagerCallbacks() {
         WatchSessionManager.sharedManager.onSessionRechableStateChange = { rechable in
             if rechable {
@@ -72,6 +73,7 @@ class MeetOptionsInterfaceController: WKInterfaceController {
         }
     }
     
+    //MARK:- Handling Segue
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
         if segueIdentifier == Constants.InterfaceController.Identifiers.MeetList.Today {
             return meetings.filter {$0.onDay == .today}
@@ -82,12 +84,12 @@ class MeetOptionsInterfaceController: WKInterfaceController {
         }
     }
     
-    //MARK: Actions
+    //MARK:- Actions
     @IBAction func actionGetMeets() {
         WatchSessionManager.sharedManager.send(message: ["fetch": true])
     }
     
-    //MARK: Helpers
+    //MARK:- UI Helpers
     private func setupAPICallUI() {
         groupOptions.setHidden(true)
         groupLoading.setHidden(false)

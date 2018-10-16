@@ -26,6 +26,7 @@ class MeetsRowController: NSObject {
         }
     }
     
+    //MARK:- UI Management (Public)
     func config(leftEdgeColor color: UIColor, unreadCircleColor: UIColor) {
         groupColoredLeftEdge.setBackgroundColor(color)
         groupUnreadCircle.setBackgroundColor(unreadCircleColor)
@@ -37,6 +38,7 @@ class MeetsRowController: NSObject {
         hideUnreadCircle()
     }
     
+    //MARK:- UI Management (Private)
     private func hideLeftEdge() {
         groupColoredLeftEdge.setHidden(true)
     }

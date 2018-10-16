@@ -14,7 +14,7 @@ class MeetDetailsInterfaceController: WKInterfaceController {
     @IBOutlet private weak var btnCall: WKInterfaceButton!
     @IBOutlet private weak var btnDirection: WKInterfaceButton!
     
-    //MARK: View Life Cycle
+    //MARK:- View Life Cycle
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         if let meet = context as? Meeting {
@@ -31,7 +31,7 @@ class MeetDetailsInterfaceController: WKInterfaceController {
         }
     }
     
-    //MARK: Actions
+    //MARK:- Actions
     @IBAction func actionLongPress() {
         popToRootController()
     }

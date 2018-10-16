@@ -15,7 +15,7 @@ class MeetListInterfaceController: WKInterfaceController {
     private var meets = [Meeting]()
     private var colors = [UIColor.cyan, UIColor.purple, UIColor.yellow, UIColor.red.withAlphaComponent(0.5), UIColor.orange, UIColor.blue, UIColor.green, UIColor.magenta]
 
-    //MARK: View Life Cycle
+    //MARK:- View Life Cycle
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
 
@@ -40,6 +40,7 @@ class MeetListInterfaceController: WKInterfaceController {
         }
     }
     
+    //MARK:- Handling Segue
     override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
         guard !meets.isEmpty else { return nil }
         let row = table.rowController(at: rowIndex) as? MeetsRowController
@@ -47,7 +48,7 @@ class MeetListInterfaceController: WKInterfaceController {
         return meets[rowIndex]
     }
     
-    //MARK: Actions
+    //MARK:- Actions
     @IBAction func actionLongPress() {
         popToRootController()
     }
