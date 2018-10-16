@@ -28,6 +28,8 @@
 		6BAF6BDD216F7C1700D3EBD5 /* MeetOptionsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF6BDC216F7C1700D3EBD5 /* MeetOptionsInterfaceController.swift */; };
 		6BAF6BDF216F8A6900D3EBD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BAF6BC1216F2AE400D3EBD5 /* Assets.xcassets */; };
 		6BAF6BE5217028DA00D3EBD5 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF6BE4217028DA00D3EBD5 /* Constant.swift */; };
+		6BD85FFB2175F21500290739 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD85FFA2175F21500290739 /* WatchSessionManager.swift */; };
+		6BD85FFD2175F3F700290739 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD85FFC2175F3F700290739 /* WatchSessionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,8 @@
 		6BAF6BDC216F7C1700D3EBD5 /* MeetOptionsInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetOptionsInterfaceController.swift; sourceTree = "<group>"; };
 		6BAF6BE0216F973800D3EBD5 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		6BAF6BE4217028DA00D3EBD5 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		6BD85FFA2175F21500290739 /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
+		6BD85FFC2175F3F700290739 /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,7 @@
 				6BAF6BA4216F2A0E00D3EBD5 /* Info.plist */,
 				6B6988182175E08800E7FF91 /* Everyday.xcdatamodeld */,
 				6B69881D2175E1DB00E7FF91 /* Constants.swift */,
+				6BD85FFA2175F21500290739 /* WatchSessionManager.swift */,
 			);
 			path = Everyday;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 				6BAF6BD7216F70CC00D3EBD5 /* InterfaceControllers */,
 				6BAF6BC1216F2AE400D3EBD5 /* Assets.xcassets */,
 				6BAF6BC3216F2AE400D3EBD5 /* Info.plist */,
+				6BD85FFC2175F3F700290739 /* WatchSessionManager.swift */,
 			);
 			path = "Meets Extension";
 			sourceTree = "<group>";
@@ -364,6 +370,7 @@
 				6B69881A2175E08800E7FF91 /* Everyday.xcdatamodeld in Sources */,
 				6BAF6B9B216F2A0C00D3EBD5 /* ViewController.swift in Sources */,
 				6BAF6B99216F2A0C00D3EBD5 /* AppDelegate.swift in Sources */,
+				6BD85FFB2175F21500290739 /* WatchSessionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +384,7 @@
 				6BAF6BE5217028DA00D3EBD5 /* Constant.swift in Sources */,
 				6BAF6BD0216F2FA500D3EBD5 /* MeetsRowController.swift in Sources */,
 				6B6988202175E5B900E7FF91 /* Date+Extension.swift in Sources */,
+				6BD85FFD2175F3F700290739 /* WatchSessionManager.swift in Sources */,
 				6BAF6BC0216F2AE300D3EBD5 /* ExtensionDelegate.swift in Sources */,
 				6BAF6BDD216F7C1700D3EBD5 /* MeetOptionsInterfaceController.swift in Sources */,
 			);

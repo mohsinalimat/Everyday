@@ -18,10 +18,23 @@ class ViewController: UIViewController {
         self.actionFetchTodoListAPI()
         self.fetchMeeting { [weak self] (meetings) in
             guard let meetings = meetings else { return }
-            meetings.forEach({ (meeting) in
-                print(meeting.title ?? "Meetint Title Not available.")
-            })
+            let allMeetings = self?.convertToDictionaryArray(from: meetings)
+            print("All meetings count: ", allMeetings?.count ?? 0)
         }
+    }
+    
+    fileprivate func convertToDictionaryArray(from managedObjects: [NSManagedObject]) -> [[String: Any]] {
+        var result: [[String: Any]] = []
+        for meeting in managedObjects {
+            var dict: [String: Any] = [:]
+            for attribute in meeting.entity.attributesByName {
+                if let value = meeting.value(forKey: attribute.key) {
+                    dict[attribute.key] = value
+                }
+            }
+            result.append(dict)
+        }
+        return result
     }
     
     fileprivate func deleteExistingMeetings(completion: @escaping(_ returned: Bool) ->()) {
