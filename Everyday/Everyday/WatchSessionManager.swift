@@ -38,12 +38,10 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
 }
 
 // MARK: Application Context
-// use when your app needs only the latest information
-// if the data was not sent, it will be replaced
 extension WatchSessionManager {
     
     // Sender
-    func updateApplicationContext(applicationContext: [String : AnyObject]) throws {
+    func updateApplicationContext(applicationContext: [String : Any]) throws {
         print("Everyday iOS app: updateApplicationContext:")
         if let session = validSession {
             do {
@@ -55,10 +53,10 @@ extension WatchSessionManager {
     }
     
     // Receiver
-    func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
         print("Everyday iOS app: didReceiveApplicationContext: applicationContext:")
         // handle receiving application context
-        
+        print(applicationContext)
         DispatchQueue.main.async {
             // make sure to put on the main queue to update UI!
         }

@@ -24,6 +24,15 @@ class MeetOptionsInterfaceController: WKInterfaceController {
         super.awake(withContext: context)
     }
     
+    override func willActivate() {
+        super.willActivate()
+        do {
+            try WatchSessionManager.sharedManager.updateApplicationContext(applicationContext: ["fetch": true])
+        } catch let error {
+            print("Error sending new data request: \(error.localizedDescription)")
+        }
+    }
+    
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
         if segueIdentifier == Constants.InterfaceController.Identifiers.MeetList.Today {
             return meets.filter {$0.onDay == .today}

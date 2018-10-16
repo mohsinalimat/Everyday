@@ -16,10 +16,20 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.actionFetchTodoListAPI()
+        self.sendToWatchApp()
+    }
+    
+    fileprivate func sendToWatchApp() {
         self.fetchMeeting { [weak self] (meetings) in
             guard let meetings = meetings else { return }
-            let allMeetings = self?.convertToDictionaryArray(from: meetings)
-            print("All meetings count: ", allMeetings?.count ?? 0)
+            if let allMeetings = self?.convertToDictionaryArray(from: meetings) {
+                print("All meetings count: ", allMeetings.count)
+                do {
+                    try WatchSessionManager.sharedManager.updateApplicationContext(applicationContext: ["meetings": allMeetings])
+                } catch let error {
+                    print("Error sending data to watch app: \(error.localizedDescription)")
+                }
+            }
         }
     }
     

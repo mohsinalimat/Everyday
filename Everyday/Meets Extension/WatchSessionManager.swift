@@ -24,28 +24,36 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
 }
 
 // MARK: Application Context
-// use when your app needs only the latest information
-// if the data was not sent, it will be replaced
 extension WatchSessionManager {
-    // Receiver
-    func session(session: WCSession, didReceiveApplicationContext applicationContext: [String : AnyObject]) {
-        print("Everyday iOS app: didReceiveApplicationContext: applicationContext:")
+    
+    // Sender
+    func updateApplicationContext(applicationContext: [String : Any]) throws {
+        print("Everyday WatchOS app: updateApplicationContext:")
+        do {
+            try session.updateApplicationContext(applicationContext)
+        } catch let error {
+            throw error
+        }
+    }
+    
+    // Receiver    
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+        print("Everyday WatchOS app: didReceiveApplicationContext: applicationContext:")
         // handle receiving application context
-        print(applicationContext)
         DispatchQueue.main.async {
             // make sure to put on the main queue to update UI!
         }
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        print("Everyday iOS app: activationDidCompleteWith: activationState: error")
+        print("Everyday WatchOS app: activationDidCompleteWith: activationState: error")
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {
-        print("Everyday iOS app: sessionDidBecomeInactive")
+        print("Everyday WatchOS app: sessionDidBecomeInactive")
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
-        print("Everyday iOS app: sessionDidDeactivate")
+        print("Everyday WatchOS app: sessionDidDeactivate")
     }
 }

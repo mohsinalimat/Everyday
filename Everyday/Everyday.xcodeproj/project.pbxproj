@@ -170,6 +170,7 @@
 		6BAF6BBC216F2AE300D3EBD5 /* Meets Extension */ = {
 			isa = PBXGroup;
 			children = (
+				6BD85FFC2175F3F700290739 /* WatchSessionManager.swift */,
 				6BAF6BD8216F70DE00D3EBD5 /* ExtensionDelegate */,
 				6BAF6BE2216F973B00D3EBD5 /* Extensions */,
 				6BAF6BE3217028BA00D3EBD5 /* Constant */,
@@ -178,7 +179,6 @@
 				6BAF6BD7216F70CC00D3EBD5 /* InterfaceControllers */,
 				6BAF6BC1216F2AE400D3EBD5 /* Assets.xcassets */,
 				6BAF6BC3216F2AE400D3EBD5 /* Info.plist */,
-				6BD85FFC2175F3F700290739 /* WatchSessionManager.swift */,
 			);
 			path = "Meets Extension";
 			sourceTree = "<group>";
