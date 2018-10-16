@@ -29,10 +29,6 @@ struct Constants {
         }
     }
     
-    struct Request {
-        static let EndPoint = "https://demo8026454.mockable.io/allmeets"
-    }
-    
     struct ResponseKeys {
         struct Meet {
             static let Title = "title"
@@ -45,7 +41,7 @@ struct Constants {
             static let Call = "call"
             static let Direction = "direction"
         }
-    }
+    }    
     
     struct Meet {
         struct Titles {
@@ -65,4 +61,5 @@ struct Constants {
             static let timeFormat = "hh:mm a"
         }
     }
+
 }

@@ -22,7 +22,6 @@ class MeetOptionsInterfaceController: WKInterfaceController {
     //MARK: View Life Cycle
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        actionGetMeetsAPICall()
     }
     
     override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
@@ -37,7 +36,7 @@ class MeetOptionsInterfaceController: WKInterfaceController {
     
     //MARK: Actions
     @IBAction func actionGetMeets() {
-        actionGetMeetsAPICall()
+        
     }
     
     //MARK: Helpers
@@ -56,32 +55,5 @@ class MeetOptionsInterfaceController: WKInterfaceController {
     private func setupSuccess() {
         groupLoading.setHidden(true)
         groupOptions.setHidden(false)
-    }
-    
-    //MARK: API Call
-    private func actionGetMeetsAPICall() {
-        setupAPICallUI()
-        if let url = URL(string: Constants.Request.EndPoint) {
-            let config = URLSessionConfiguration.default
-            config.requestCachePolicy = .reloadIgnoringLocalCacheData
-            let session = URLSession.init(configuration: config)
-            let task = session.dataTask(with: url) { [weak self] (data, response, error) in
-                if let error = error {
-                    self?.setupTryAgain()
-                    print("API Error: ", error.localizedDescription)
-                } else {
-                    do {
-                        let jsonArray = try JSONSerialization.jsonObject(with: data!, options:.allowFragments) as! [[String : Any]]
-                        let meetsArray = jsonArray.map { Meets(dictionary: $0) }
-                        self?.meets.append(contentsOf: meetsArray)
-                        self?.setupSuccess()
-                    } catch let error {
-                        self?.setupTryAgain()
-                        print("JSON Parsing Error: ", error.localizedDescription)
-                    }
-                }
-            }
-            task.resume()
-        }
     }
 }

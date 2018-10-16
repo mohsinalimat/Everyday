@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B69881A2175E08800E7FF91 /* Everyday.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6B6988182175E08800E7FF91 /* Everyday.xcdatamodeld */; };
+		6B69881E2175E1DB00E7FF91 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B69881D2175E1DB00E7FF91 /* Constants.swift */; };
+		6B6988202175E5B900E7FF91 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF6BE0216F973800D3EBD5 /* Date+Extension.swift */; };
 		6BAF6B99216F2A0C00D3EBD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF6B98216F2A0C00D3EBD5 /* AppDelegate.swift */; };
 		6BAF6B9B216F2A0C00D3EBD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF6B9A216F2A0C00D3EBD5 /* ViewController.swift */; };
 		6BAF6B9E216F2A0C00D3EBD5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BAF6B9C216F2A0C00D3EBD5 /* Main.storyboard */; };
@@ -24,7 +27,6 @@
 		6BAF6BD6216F665F00D3EBD5 /* MeetInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF6BD5216F665F00D3EBD5 /* MeetInterfaceController.swift */; };
 		6BAF6BDD216F7C1700D3EBD5 /* MeetOptionsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF6BDC216F7C1700D3EBD5 /* MeetOptionsInterfaceController.swift */; };
 		6BAF6BDF216F8A6900D3EBD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BAF6BC1216F2AE400D3EBD5 /* Assets.xcassets */; };
-		6BAF6BE1216F973800D3EBD5 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF6BE0216F973800D3EBD5 /* Date+Extension.swift */; };
 		6BAF6BE5217028DA00D3EBD5 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAF6BE4217028DA00D3EBD5 /* Constant.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +73,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6B6988192175E08800E7FF91 /* Everyday.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Everyday.xcdatamodel; sourceTree = "<group>"; };
+		6B69881D2175E1DB00E7FF91 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6BAF6B95216F2A0C00D3EBD5 /* Everyday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Everyday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BAF6B98216F2A0C00D3EBD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6BAF6B9A216F2A0C00D3EBD5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +146,8 @@
 				6BAF6B9F216F2A0E00D3EBD5 /* Assets.xcassets */,
 				6BAF6BA1216F2A0E00D3EBD5 /* LaunchScreen.storyboard */,
 				6BAF6BA4216F2A0E00D3EBD5 /* Info.plist */,
+				6B6988182175E08800E7FF91 /* Everyday.xcdatamodeld */,
+				6B69881D2175E1DB00E7FF91 /* Constants.swift */,
 			);
 			path = Everyday;
 			sourceTree = "<group>";
@@ -160,8 +166,8 @@
 			isa = PBXGroup;
 			children = (
 				6BAF6BD8216F70DE00D3EBD5 /* ExtensionDelegate */,
-				6BAF6BE3217028BA00D3EBD5 /* Constant */,
 				6BAF6BE2216F973B00D3EBD5 /* Extensions */,
+				6BAF6BE3217028BA00D3EBD5 /* Constant */,
 				6BAF6BDA216F70FB00D3EBD5 /* Models */,
 				6BAF6BD9216F70EA00D3EBD5 /* TableRowController */,
 				6BAF6BD7216F70CC00D3EBD5 /* InterfaceControllers */,
@@ -354,6 +360,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B69881E2175E1DB00E7FF91 /* Constants.swift in Sources */,
+				6B69881A2175E08800E7FF91 /* Everyday.xcdatamodeld in Sources */,
 				6BAF6B9B216F2A0C00D3EBD5 /* ViewController.swift in Sources */,
 				6BAF6B99216F2A0C00D3EBD5 /* AppDelegate.swift in Sources */,
 			);
@@ -368,7 +376,7 @@
 				6BAF6BD2216F374100D3EBD5 /* Meets.swift in Sources */,
 				6BAF6BE5217028DA00D3EBD5 /* Constant.swift in Sources */,
 				6BAF6BD0216F2FA500D3EBD5 /* MeetsRowController.swift in Sources */,
-				6BAF6BE1216F973800D3EBD5 /* Date+Extension.swift in Sources */,
+				6B6988202175E5B900E7FF91 /* Date+Extension.swift in Sources */,
 				6BAF6BC0216F2AE300D3EBD5 /* ExtensionDelegate.swift in Sources */,
 				6BAF6BDD216F7C1700D3EBD5 /* MeetOptionsInterfaceController.swift in Sources */,
 			);
@@ -685,6 +693,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6B6988182175E08800E7FF91 /* Everyday.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6B6988192175E08800E7FF91 /* Everyday.xcdatamodel */,
+			);
+			currentVersion = 6B6988192175E08800E7FF91 /* Everyday.xcdatamodel */;
+			path = Everyday.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6BAF6B8D216F2A0C00D3EBD5 /* Project object */;
 }
